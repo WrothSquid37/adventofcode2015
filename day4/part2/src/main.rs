@@ -23,7 +23,7 @@ fn main() {
         //println!("Digest Generated: {:x}", digest);
 
 
-        if (format!("{:x}", digest)).starts_with("00000") {
+        if (format!("{:x}", digest)).starts_with("000000") {
             break;
         }
 

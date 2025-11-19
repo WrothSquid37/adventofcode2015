@@ -41,6 +41,6 @@ fn main() {
         }
     }
     
-    println!("Floor arrived on: {}", count)
+    println!("Floor arrived on: {}", count);
     
 }
