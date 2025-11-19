@@ -1,3 +1,6 @@
+
+
 fn main() {
-    println!("Hello, world!");
+    let digest = md5::compute("yzbqklnj");
+    println!("{:x}", digest);
 }
