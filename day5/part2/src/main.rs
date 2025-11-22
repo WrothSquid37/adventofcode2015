@@ -1,11 +1,9 @@
 use std::fs::File;
 use std::io::prelude::*;
-use std::ops::Index;
 use std::path::Path;
 fn main() {
     
     let inputstring : String;
-    
     let mut nice_strs: i16 = 0;
 
     // Create a path to the desired file
@@ -30,46 +28,25 @@ fn main() {
     
     for ln in split_string {
 
-        let mut found_double: bool = false;
-        
-        if ln.contains("ab") || ln.contains("cd") || ln.contains("pq") || ln.contains("xy") {
-
-            println!("Naughty Found: {}", ln);
-            continue;
-
-        }
-
-        let mut vowel_count: i32 = 0; 
-
-        for c in ln.chars() {
-
-            if c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' {
-                vowel_count += 1;
-            }
-
-        }
-
-        if vowel_count < 3 {
-            println!("Naughty Found: {}", ln);
-            continue;
-        }
-
-
+        let mut found_doubles: i8 = 0;
+        let mut claimed_character_indexes = vec![];
         for i in 0..ln.chars().count() {
-            if ln.chars().nth(i+1) == ln.chars().nth(i){
-                found_double = true;
-                break;
+            if ln.chars().nth(i+1) == ln.chars().nth(i) && !claimed_character_indexes.contains(&i){
+                found_doubles += 1;
+                claimed_character_indexes.push(i);
+                claimed_character_indexes.push(i+1);
             }
         }
 
-        if !found_double {
+        if (found_doubles < 2) {
+            println!("Found Naughty: {}", ln);
             continue;
         }
-
-        nice_strs += 1;
+        
+        println!("Found Nice: {}", ln)
 
     }
+
     
-    println!("Nice Strings Found: {}", nice_strs);
 
 }
